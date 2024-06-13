@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer Game</title>
+  <style>
+    #timer {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    #message-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">0:10</div>
+  <div id="message-box">Tempo esgotado! Você perdeu.</div>
+
+  <script>
+    var timerDisplay = document.getElementById('timer');
+    var messageBox = document.getElementById('message-box');
+    var timeLeft = 120; // 2 minutes in seconds
+
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      var remainingSeconds = seconds % 60;
+      return minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+    }
+
+    function updateTimer() {
+      timeLeft--;
+      if (timeLeft >= 0) {
+        timerDisplay.textContent = formatTime(timeLeft);
+      } else {
+        clearInterval(timerInterval);
+        messageBox.style.display = 'block';
+      }
+    }
+
+    var timerInterval = setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
