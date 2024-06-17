@@ -72,18 +72,20 @@
         const passwordInput = document.getElementById('password-input');
         const hints = document.querySelectorAll('.hint');
 
+        // Mostrar a primeira dica no início
+        hints[0].textContent = dicas[0];
+
         submitButton.addEventListener('click', checkPassword);
 
         function checkPassword() {
             const senhaDIGITADA = passwordInput.value;
 
-            if (tentativas == 1) {
-                hints[0].textContent = dicas[0]; // Dica 1
-            } else if (tentativas == 2) {
+            // Mostrar dicas baseadas no número de tentativas
+            if (tentativas === 1) {
                 hints[1].textContent = dicas[1]; // Dica 2
-            } else if (tentativas == 3) {
+            } else if (tentativas === 2) {
                 hints[2].textContent = dicas[2]; // Dica 3
-            } else if (tentativas == 4) {
+            } else if (tentativas === 3) {
                 hints[3].textContent = dicas[3]; // Dica 4
             }
 
